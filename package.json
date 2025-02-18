@@ -1,0 +1,17 @@
+{
+  "name": "@hydroper/colorobserver",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {},
+  "main": "src/index.ts",
+  "dependencies": {
+    "color": "^4.2.3"
+  },
+  "description": "Color observer utility",
+  "license": "Apache-2.0",
+  "keywords": ["color"],
+  "author": "Hydroper <HydroperFox@gmail.com>",
+  "devDependencies": {
+    "@types/color": "^4.2.0"
+  }
+}
