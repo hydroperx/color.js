@@ -21,5 +21,5 @@ useEffect(() => {
     return () => {
         colorObserver.cleanup();
     };
-});
+}, []);
 ```
