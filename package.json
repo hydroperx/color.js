@@ -1,5 +1,5 @@
 {
-  "name": "@hydroper/colorobserver",
+  "name": "com.hydroper.colorobserver",
   "version": "1.0.0",
   "type": "module",
   "scripts": {},
@@ -10,6 +10,7 @@
   "description": "Color observer utility",
   "license": "Apache-2.0",
   "keywords": ["color"],
+  "repository": "https://github.ocm/realhydroper/tscolorobserver",
   "author": "Hydroper <HydroperFox@gmail.com>",
   "devDependencies": {
     "@types/color": "^4.2.0"
