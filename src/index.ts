@@ -1,6 +1,6 @@
 import Color from "color";
 
-const heardEvents = ["focusin", "focusout", "mousedown", "click", "mouseover", "mouseup", "mouseout"];
+const heardEvents = ["focusin", "focusout", "mousedown", "click", "mouseover", "mouseup", "mouseout", "contextmenu"];
 
 /**
  * Detects character color used in an element.
