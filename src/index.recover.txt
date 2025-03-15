@@ -1,0 +1,94 @@
+import Color from "color";
+
+const heardEvents = ["focusin", "focusout", "mousedown", "click", "mouseover", "mouseup", "mouseout"];
+
+/**
+ * Detects character color used in an element.
+ * 
+ * Make sure to use this class under an `useEffect` hook
+ * and on cleanup, invoke `ColorObserver#cleanup()`.
+ */
+export class ColorObserver
+{
+    private _parents: HTMLElement[];
+    private _triggerCallback: Function;
+    private _contextMenu: Function;
+    private _mouseMoveFn: Function;
+    private _mouseOutFn: Function;
+
+    constructor(element: HTMLElement | null, callback: (color: Color) => void)
+    {
+        const browser = typeof window == "object";
+
+        this._triggerCallback = () => {
+            if (!element || !browser)
+            {
+                return;
+            }
+
+            const color = window.getComputedStyle(element).getPropertyValue("color");
+            callback(Color(color));
+        }
+
+        this._contextMenu = (e: Event) => {
+            this._triggerCallback();
+
+            const el = e.currentTarget as HTMLElement;
+
+            el.removeEventListener("mousemove", this._mouseMoveFn as any);
+            el.removeEventListener("mouseout", this._mouseOutFn as any);
+
+            el.addEventListener("mousemove", this._mouseMoveFn as any);
+            el.addEventListener("mouseout", this._mouseOutFn as any);
+        };
+
+        this._mouseMoveFn = () => {
+            this._triggerCallback();
+        };
+
+        this._mouseOutFn = (e: Event) => {
+            this._triggerCallback();
+
+            const el = e.currentTarget as HTMLElement;
+            el.removeEventListener("mousemove", this._mouseMoveFn as any);
+            el.removeEventListener("mouseout", this._mouseOutFn as any);
+        };
+
+        this._parents = [];
+
+        if (browser)
+        {
+            let p = element;
+            while (p !== null)
+            {
+                if (p === document.body)
+                {
+                    break;
+                }
+                for (let eventType of heardEvents)
+                {
+                    p.addEventListener(eventType, this._triggerCallback as any);
+                }
+                p.addEventListener("contextmenu", this._contextMenu as any);
+                this._parents.push(p);
+                p = p.parentElement;
+            }
+        }
+
+        this._triggerCallback();
+    }
+
+    cleanup()
+    {
+        for (let p of this._parents)
+        {
+            for (let eventType of heardEvents)
+            {
+                p.removeEventListener(eventType, this._triggerCallback as any);
+            }
+            p.removeEventListener("mousemove", this._mouseMoveFn as any);
+            p.removeEventListener("mouseout", this._mouseOutFn as any);
+            p.removeEventListener("contextmenu", this._contextMenu as any);
+        }
+    }
+}

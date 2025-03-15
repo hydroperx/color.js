@@ -1,63 +1,40 @@
 import Color from "color";
 
-const heardEvents = ["focusin", "focusout", "mousedown", "click", "mouseover", "mouseup", "mouseout", "contextmenu"];
-
 /**
  * Detects character color used in an element.
  * 
- * Make sure to use this class under an `useEffect` hook
+ * Make sure to use this class under an `useEffect` hook (using `[]` (empty) dependencies)
  * and on cleanup, invoke `ColorObserver#cleanup()`.
  */
 export class ColorObserver
 {
-    private _parents: HTMLElement[];
-    private _triggerCallback: Function;
+    private _trigger_callback: Function;
+    private m_animation_frame: number = -1;
+    private m_animation_frame_fn: Function;
 
     constructor(element: HTMLElement | null, callback: (color: Color) => void)
     {
         const browser = typeof window == "object";
 
-        this._triggerCallback = () => {
-            if (!element || !browser)
-            {
-                return;
-            }
-
+        this._trigger_callback = () => {
             const color = window.getComputedStyle(element).getPropertyValue("color");
             callback(Color(color));
-        }
+        };
 
-        this._parents = [];
+        this.m_animation_frame_fn = () => {
+            this._trigger_callback();
+            this.m_animation_frame = requestAnimationFrame(this.m_animation_frame_fn as any);
+        };
 
-        if (browser)
-        {
-            let p = element;
-            while (p !== null)
-            {
-                if (p === document.body)
-                {
-                    break;
-                }
-                for (let eventType of heardEvents)
-                {
-                    p.addEventListener(eventType, this._triggerCallback as any);
-                }
-                this._parents.push(p);
-                p = p.parentElement;
-            }
-        }
+        if (browser && element)
+            this.m_animation_frame = requestAnimationFrame(this.m_animation_frame_fn as any);
 
-        this._triggerCallback();
+        this._trigger_callback();
     }
 
     cleanup()
     {
-        for (let p of this._parents)
-        {
-            for (let eventType of heardEvents)
-            {
-                p.removeEventListener(eventType, this._triggerCallback as any);
-            }
-        }
+        if (this.m_animation_frame !== -1)
+            window.cancelAnimationFrame(this.m_animation_frame);
     }
 }
