@@ -7,7 +7,7 @@ This is useful for icons that adapt to light and dark themes.
 ## Example
 
 ```ts
-import { ColorObserver } from "com.hydroper.colorobserver";
+import { ColorObserver } from "@hydroper/colorobserver";
 import { useEffect, useRef } from "react";
 import Color from "color";
 
