@@ -1,6 +1,6 @@
-# ColorObserver
+# @hydroper/colorobserver
 
-Simple TypeScript + React utility that detects the computed character color (the CSS `color` property) in an element, checking for mouse and focus events across all parents.
+Simple TypeScript utility that detects the computed character color (the CSS `color` property) in an element, checking for mouse and focus events across all parents.
 
 This is useful for icons that adapt to light and dark themes.
 
@@ -9,17 +9,18 @@ This is useful for icons that adapt to light and dark themes.
 ```ts
 import { ColorObserver } from "@hydroper/colorobserver";
 import { useEffect, useRef } from "react";
-import Color from "color";
 
-const myRef = useRef(null);
+const ref = useRef<HTMLDivElement | null>(null);
 
 useEffect(() => {
-    const colorObserver = new ColorObserver(myRef.current, (color: Color) => {
+    // color observer
+    const color_observer = new ColorObserver(ref.current, color => {
         console.log("light =", color.isLight());
     });
 
+    // cleanup function
     return () => {
-        colorObserver.cleanup();
+        color_observer.cleanup();
     };
 }, []);
 ```
