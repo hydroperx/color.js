@@ -17,6 +17,7 @@ export class ColorObserver
         const browser = typeof window == "object";
 
         this._trigger_callback = () => {
+            if (!element) return;
             let color = window.getComputedStyle(element).getPropertyValue("color");
             color = color ? color : "#fff";
             callback(Color(color));
