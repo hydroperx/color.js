@@ -1,6 +1,6 @@
 {
   "name": "@hydroperx/colorobserver",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "files": ["/dist"],
   "scripts": {
@@ -9,8 +9,8 @@
   },
   "exports": {
     ".": {
-      "default": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "dependencies": {
