@@ -41,12 +41,6 @@ export interface Color {
   lightness(): number;
   lightness(val: number): Color;
 
-  whiteness(): number;
-  whiteness(val: number): Color;
-
-  blackness(): number;
-  blackness(val: number): Color;
-
   cyan(): number;
   cyan(val: number): Color;
 
@@ -177,85 +171,73 @@ Color.apple = (...rest: any[]) => {
 Color.prototype.alpha = function(val: any = undefined): any {
   const r = this._color.alpha(val);
   if (typeof val === "undefined") return r;
-  return this;
+  return Color(r);
 };
 
 Color.prototype.red = function(val: any = undefined): any {
   const r = this._color.red(val);
   if (typeof val === "undefined") return r;
-  return this;
+  return Color(r);
 };
 
 Color.prototype.green = function(val: any = undefined): any {
   const r = this._color.green(val);
   if (typeof val === "undefined") return r;
-  return this;
+  return Color(r);
 };
 
 Color.prototype.blue = function(val: any = undefined): any {
   const r = this._color.blue(val);
   if (typeof val === "undefined") return r;
-  return this;
+  return Color(r);
 };
 
 Color.prototype.hue = function(val: any = undefined): any {
   const r = this._color.hue(val);
   if (typeof val === "undefined") return r;
-  return this;
+  return Color(r);
 };
 
 Color.prototype.saturationl = function(val: any = undefined): any {
   const r = this._color.saturationl(val);
   if (typeof val === "undefined") return r;
-  return this;
+  return Color(r);
 };
 
 Color.prototype.saturationv = function(val: any = undefined): any {
   const r = this._color.saturationv(val);
   if (typeof val === "undefined") return r;
-  return this;
+  return Color(r);
 };
 
 Color.prototype.lightness = function(val: any = undefined): any {
-  const r = this._color.lightness(val);
+  const r = (this._color as Color$).lightness(val);
   if (typeof val === "undefined") return r;
-  return this;
-};
-
-Color.prototype.whiteness = function(val: any = undefined): any {
-  const r = this._color.whiteness(val);
-  if (typeof val === "undefined") return r;
-  return this;
-};
-
-Color.prototype.blackness = function(val: any = undefined): any {
-  const r = this._color.blackness(val);
-  if (typeof val === "undefined") return r;
-  return this;
+  return Color(r);
 };
 
 Color.prototype.cyan = function(val: any = undefined): any {
   const r = this._color.cyan(val);
   if (typeof val === "undefined") return r;
-  return this;
+  return Color(r);
 };
 
 Color.prototype.magenta = function(val: any = undefined): any {
   const r = this._color.magenta(val);
   if (typeof val === "undefined") return r;
-  return this;
+  return Color(r);
 };
 
 Color.prototype.yellow = function(val: any = undefined): any {
   const r = this._color.yellow(val);
   if (typeof val === "undefined") return r;
-  return this;
+  return Color(r);
 };
 
 Color.prototype.black = function(val: any = undefined): any {
   const r = this._color.black(val);
   if (typeof val === "undefined") return r;
-  return this;
+  return Color(r);
 };
 
 Color.prototype.luminosity = function() {
