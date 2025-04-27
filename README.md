@@ -1,13 +1,17 @@
-# @hydroperx/colorobserver
+# @hydroperx/color
 
-Simple TypeScript utility that detects the computed character color (the CSS `color` property) in an element, checking for mouse and focus events across all parents.
+## Documentation
 
-This is useful for icons that adapt to light and dark themes.
+### Color
 
-## Example
+The `Color` class is similiar to [NPM color](https://www.npmjs.com/package/color), but supports calculating color difference (`color.delta(other)`) and does not need a separate typings package.
+
+### Color observer
+
+Utility for detecting the computed character color (the cascading `color` property) in an element. This is useful for icons that adapt to light and dark themes.
 
 ```ts
-import { ColorObserver } from "@hydroperx/colorobserver";
+import { ColorObserver } from "@hydroperx/color";
 import { useEffect, useRef } from "react";
 
 const ref = useRef<HTMLDivElement | null>(null);

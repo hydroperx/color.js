@@ -1,8 +1,10 @@
 {
-  "name": "@hydroperx/colorobserver",
-  "version": "1.0.4",
+  "name": "@hydroperx/color",
+  "version": "1.0.0",
   "type": "module",
-  "files": ["/dist"],
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build"
@@ -15,11 +17,21 @@
   },
   "dependencies": {
     "color": "^4.2.3",
-    "@types/color": "^4.2.0"
+    "color-convert": "^3.0.1",
+    "delta-e": "^0.0.8"
   },
-  "description": "Color observer utility",
+  "devDependencies": {
+    "@types/color": "^4.2.0",
+    "@types/delta-e": "^0.0.2"
+  },
+  "description": "Color library",
   "license": "Apache-2.0",
-  "keywords": ["color"],
-  "repository": "https://github.ocm/hydroperx/colorobserver",
-  "author": "Hydroper <HydroperFox@gmail.com>"
+  "keywords": [
+    "color"
+  ],
+  "repository": "https://github.ocm/hydroperx/color",
+  "author": "Hydroper <HydroperFox@gmail.com>",
+  "publishConfig": {
+    "access": "public"
+  }
 }
