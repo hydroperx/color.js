@@ -1,3 +1,5 @@
+import { Color } from "./Color";
+
 /**
  * Detects character color used in an element.
  *
