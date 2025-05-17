@@ -22,7 +22,8 @@
   },
   "devDependencies": {
     "@types/color": "^4.2.0",
-    "@types/delta-e": "^0.0.2"
+    "@types/delta-e": "^0.0.2",
+    "typescript": "~5.6.2"
   },
   "description": "Color library",
   "license": "Apache-2.0",
