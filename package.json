@@ -30,7 +30,7 @@
   "keywords": [
     "color"
   ],
-  "repository": "https://github.ocm/hydroperx/color",
+  "repository": "https://github.ocm/hydroperx/color.js",
   "author": "Hydroper <HydroperFox@gmail.com>",
   "publishConfig": {
     "access": "public"
